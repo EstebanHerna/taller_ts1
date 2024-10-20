@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Series</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">TV Series</h1>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Channel</th>
+                    <th>Seasons</th>
+                    <th>Description</th>
+                    <th>Link</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody id="seriesTable">
+                <!-- Series will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        class Serie {
+            constructor(id, title, channel, seasons, description, link, image) {
+                this.id = id;
+                this.title = title;
+                this.channel = channel;
+                this.seasons = seasons;
+                this.description = description;
+                this.link = link;
+                this.image = image;
+            }
+        }
+
+        const series = [
+            new Serie(1, "Breaking Bad", "AMC", 5, "Set and filmed in Albuquerque, New Mexico, the series tells the story of Walter White, a struggling and depressed high school chemistry teacher who is diagnosed with lung cancer", "https://www.amc.com/shows/breaking-bad", "https://i.imgur.com/GGje0vc.jpg"),
+            new Serie(2, "Orange Is the New Black", "Netflix", 6, "The series begins revolving around Piper Chapman, a woman in her thirties living in New York City who is sentenced to 15 months in Litchfield Penitentiary", "https://www.netflix.com/co/title/70242311", "https://i.imgur.com/EvKe48G.jpg"),
+            new Serie(3, "Game of Thrones", "HBO", 7, "American fantasy drama", "https://www.hbo.com/game-of-thrones", "https://i.imgur.com/TDCEV1S.jpg"),
+            new Serie(4, "The Big Bang Theory", "CBS", 12, "Leonard and Sheldon are brilliant physicists, socially challenged everywhere except the lab. Penny, their neighbor, tries to teach them about life.", "https://www.cbs.com/shows/big_bang_theory/about/", "https://i.imgur.com/uAEpVWk.jpg"),
+            new Serie(5, "Sherlock", "BBC", 4, "Modern-day depiction of Sherlock Holmes solving mysteries in London with Dr. John Watson.", "https://www.bbc.co.uk/programmes/b018ttws", "https://i.imgur.com/02B7qhj.jpg"),
+            new Serie(6, "A Very English Scandal", "BBC", 2, "Fact-based three-part British comedy-drama about a political scandal.", "https://www.bbc.co.uk/programmes/p065smy4", "https://i.imgur.com/D4y3DrQ.jpg")
+        ];
+
+        function renderSeriesTable(series) {
+            const tableBody = document.getElementById("seriesTable");
+            series.forEach(serie => {
+                const row = `<tr>
+                    <td>${serie.id}</td>
+                    <td>${serie.title}</td>
+                    <td>${serie.channel}</td>
+                    <td>${serie.seasons}</td>
+                    <td>${serie.description}</td>
+                    <td><a href="${serie.link}" target="_blank">Link</a></td>
+                    <td><img src="${serie.image}" alt="${serie.title} Image" style="width: 100px;"></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Render the table with series data
+        renderSeriesTable(series);
+    </script>
+</body>
+</html>
